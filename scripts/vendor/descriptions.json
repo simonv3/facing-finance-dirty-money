@@ -1,0 +1,75 @@
+[
+  {
+    "name": "ATK (Alliant Techsystems)",
+    "description": "Produces cluster munitions, nuclear weapons, and trident missiles."
+  },{
+    "name": "Andritz",
+    "description": "Will displace 78,000 people in Turkey, harm diverse ecosystems, and plans to devestate the Xingu River basin in Brazil."
+  },{
+    "name": "Barrick Gold",
+    "description": "Caused severe environmental damage with its gold mine in Papua New Guinea. Miners have been killed by security employees."
+  },{
+    "name": "Bumitama Agri",
+    "description": "Oil palm plantations contribute to widespread environmental and social devestation. Performs land grabbing, deforestation, and manages illegal plantations."
+  },{
+    "name": "Cargill",
+    "description": "Overlooks forced labour, child labour, and deforestation on its suppliers."
+  },{
+    "name": "Chevron",
+    "description": "Directly contributes to climate change. Ranked number one responsible for highest cumulative worldwide emissions."
+  },{
+    "name": "Coal India",
+    "description": "Monopoly abuse, child labour in mining pits, eviction of indigenous tribal communities, murdering protestors."
+  },{
+    "name": "Elbit Systems",
+    "description": "Arms sales, violation of serious ethical norms."
+  },{
+    "name": "Gap",
+    "description": "Unsafe work conditions, poverty wages, excessive overtime, and union busting."
+  },{
+    "name": "Gazprom",
+    "description": "Number 5 of 90 companies responsible for two-thirds of the greenhouse gas emissions generated since the dawn of the industrial age."
+  },{
+    "name": "GlaxoSmithKline",
+    "description": "Bribing doctors and hospitals, misbranded drugs and falsely advertised drugs, tested drugs on children without consent."
+  },{
+    "name": "Glencore Xstrata",
+    "description":"Killing, displacing, and contaminating communities next to coal mines; tax evasion and fraud."
+  },{
+    "name": "Goldcorp",
+    "description":"Severely exposes local people (who voted 98% against the mine) to toxins from gold and silver mining; murders anti-mine activists"
+  },{
+    "name": "Hyundai Motor Group",
+    "description":"Violates union and human rights; workplace rife with sexual harassment, extremely low wages, and conditions so bad workers die on the job; filed 16 lawsuits against workers who went on strike."
+  },{
+    "name": "Lockheed Martin",
+    "description":"Produces €28 billion in nuclear weapons for the US military, and also some for Israel, while violating International Humanitarian Law and refusing to sign the UN Global Compact."
+  },{
+    "name": "Rheinmetall",
+    "description":"Extraordinarily corrupt; sells arms to countries with numerous human rights violations."
+  },{
+    "name": "Royal Dutch Shell",
+    "description":"Emits enormous amounts of carbon, wreaks environmental havoc by spilling and never cleaning up thousands upon thousands of gallons of oil."
+  },{
+    "name": "RWE",
+    "description":"Turns to coal – instead of renewables – as nuclear power is phased out; human rights labor violations."
+  },{
+    "name": "Samsung Group",
+    "description": "Evidence of child labour enearthed in 2012 in eight factories. Discriminates in hiring practices and price fixing. Sources tin from unlicenced and environmentally destructive mines in Indonesia"
+  },{
+    "name": "Sesa Sterlite",
+    "description":"Continuously criticised for environmental, health and safety, indigenous, and human rights issues."
+  },{
+    "name": "SodaStream International",
+    "description": "Main factory is illegally situatied in the Israeli occupied West Bank. Cheap exploitation of Palestinian workers. Discriminates between Palestinian and Israeli work forces."
+  },{
+    "name": "Vattenfall",
+    "description": "Generates fossil feuls and nuclear energy. Sources Uranium from environmentally and human rights destructive mines. Disastrously stores nuclear waste in caverns underneath its plants - one third of its stored waste leaking into the surrounding area."
+  },{
+    "name": "Wal-Mart Stores",
+    "description": "Linked to forced labour, union busting, corruption, slavery, human trafficking, low wages, illegal imprisonment, and threathened deportation of workers in both South East Asia and in the US and Mexico."
+  },{
+    "name": "Zijin Mining",
+    "description": "Bribing journalists to not report on environmental disasters it has caused in China, polluted major river arteries and killed approximately 1.98 million kg of fish and the drinking water of 200,000 people."
+  }
+]
