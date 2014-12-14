@@ -364,9 +364,9 @@
     return val;
   };
 
-  d3.csv('scripts/investments.csv', function(data){
-    d3.json('scripts/descriptions.json', function(dirtyCompanies){
-      d3.csv('scripts/countries.csv', function(countries){
+  d3.csv('scripts/vendor/investments.csv', function(data){
+    d3.json('scripts/vendor/descriptions.json', function(dirtyCompanies){
+      d3.csv('scripts/vendor/countries.csv', function(countries){
         app.cleanedData = app.cleanUpData(data, countries);
         app.dirtyCompanies = dirtyCompanies;
         app.xScale = d3.scale.linear()
