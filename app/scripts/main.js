@@ -1,4 +1,5 @@
 /* jshint devel:true */
+/* global d3:false */
 (function(d3){
   'use strict';
 
@@ -24,7 +25,7 @@
     .append('text')
     .classed('title', true)
     .attr('y', + 20)
-    .text('Europeese banken gebruiken €65 miljard in spaarcenten om te investeren in deze bedrijven.')
+    .text('Europeese banken gebruiken €65 miljard in spaarcenten om te investeren in deze bedrijven.');
 
   app.countries = app.svg.append('g')
     .classed('countries', true);
@@ -71,7 +72,7 @@
     // clean up the data
     var investors = [];
     var previousInvestorIndex = 0;
-    data.forEach(function(row, i){
+    data.forEach(function(row){
       // if row.Parent isn't empty string, create a new object.
       if (row.Parent !== ''){
         var investor = {
@@ -115,10 +116,7 @@
     });
 
     // loop through the data and find the parents with the appropriate country
-    investors.forEach(function(investor, i){
-      var investor,
-          investmentsObject,
-          type;
+    investors.forEach(function(investor){
 
       if (!cleanedData.total){
         cleanedData.total = 0;
@@ -134,9 +132,9 @@
         country.investors.forEach(function(countryInvestors){
           if (countryInvestors.name === investor.name){
             countryInvestors.investments = investor.investments;
-            countryInvestors.total = d3.sum(investor.investments, (function(i){
+            countryInvestors.total = d3.sum(investor.investments, function(i){
               return i.value;
-            }));
+            });
 
             country.total += countryInvestors.total;
             cleanedData.total += countryInvestors.total;
@@ -178,7 +176,7 @@
     country
       .append('rect')
         .each(function(d){
-          if (d.name == drawDefault){
+          if (d.name === drawDefault){
             app.drawBarGraph(d);
           }
         })
@@ -189,11 +187,9 @@
         .on('click', function(d){
           app.drawBarGraph(d);
         })
-        .on('mouseover', function(d){
-          // app.addClassToSelected(d, 'g.country', 'dimmed', true);
+        .on('mouseover', function(){
           d3.select(this.nextSibling).style('opacity', 1);
-        }).on('mouseout', function(d){
-          // app.addClassToSelected(d, 'g.country', 'dimmed', false);
+        }).on('mouseout', function(){
           d3.select(this.nextSibling).style('opacity', 0);
         })
         .attr('fill', function(d){
@@ -203,13 +199,8 @@
     country
       .append('text')
         .attr('y', 70)
-        .text(function(d) { return d.name })
-        .attr('x', function(d, i){
-          // if (i > 4){
-          //   return -d3.select(this)[0][0].clientWidth + app.xScale(d.total);
-          // }
-        })
-        .style('opacity', 0)
+        .text(function(d) { return d.name; })
+        .style('opacity', 0);
 
   };
 
@@ -225,40 +216,33 @@
     app.countryText
       .text(function(){
         var nationaliteit = function(){ switch (d.name){
-          case "België":
-            return "Belgische";
-            break;
-          case "Duitsland":
-            return "Duitse"
-            break;
-          case "Nederland":
-            return "Nederlandse"
-            break;
-          case "Frankrijk":
-            return "Franse"
-            break;
-          case "Italië":
-            return "Italische"
-            break;
-          case "Verenigd Koningkrijk":
-            return "Britse"
-            break;
-        }}
+          case 'België':
+            return 'Belgische';
+          case 'Duitsland':
+            return 'Duitse';
+          case 'Nederland':
+            return 'Nederlandse';
+          case 'Frankrijk':
+            return 'Franse';
+          case 'Italië':
+            return 'Italische';
+          case 'Verenigd Koningkrijk':
+            return 'Britse';
+        }};
         return nationaliteit() +
-          " banken steken zo'n "+
+          ' banken steken zo\'n '+
           app.commaSeparateNumber(Math.round(d.total)) +
-          " mln euro in 'dirty money' bedrijven:"
+          ' mln euro in \'dirty money\' bedrijven:';
       })
       .attr('y', 140)
       .style('font-size', '1.2rem');
 
-    var investors,
-        investor,
+    var investor,
         enteringInvestor,
         barChartScale,
         maxTotal;
 
-    maxTotal = d3.max(d.investors, function(d){ return d.total });
+    maxTotal = d3.max(d.investors, function(d){ return d.total; });
 
     barChartScale = d3.scale.linear()
       .domain([0, maxTotal])
@@ -279,32 +263,32 @@
       .classed('investor', true)
         .attr('transform', function(d, i){
           var push = 180 + i * 70;
-          return "translate(0, " + push + ")"
+          return 'translate(0, ' + push + ')';
         })
-        .attr('actual-value', function(d){ return d.total; })
+        .attr('actual-value', function(d){ return d.total; });
 
     enteringInvestor
       .append('text')
         .attr('y', -6)
-        .text(function(d){ return d.name })
+        .text(function(d){ return d.name; });
 
     enteringInvestor
       .append('text')
-        .attr('x', function(d){
-          var actualValue = d3.select(this.parentNode).attr('actual-value')
+        .attr('x', function(){
+          var actualValue = d3.select(this.parentNode).attr('actual-value');
           return barChartScale(actualValue) + 30;
         })
         .attr('y', 24)
         .text(function(d){
           return '€' + Math.round(d.total) + ' mln';
-        })
+        });
 
     enteringInvestor.selectAll('g.investments')
       .data(function(d){ return d.investments; })
         .enter()
       .append('g')
         .classed('investment', true)
-          .attr('actual-value', function(d) { return d.value })
+          .attr('actual-value', function(d) { return d.value; })
           .append('rect')
             .attr('fill', function(d){ return app.companyColors(d.name); })
             .attr('y', 0)
@@ -312,11 +296,8 @@
             .attr('x', 0)
             .attr('width', 0)
             .on('mouseover', function(d){
-
-              console.log(d3.select('.company-overview .text').html())
-              if (d3.select('.company-overview .text').html() == ''){
+              if (d3.select('.company-overview .text').html() === ''){
                 d3.select('.company-overview h2').html(d.name);
-
               }
               app.addClassToSelected(d, 'g.investment', 'dimmed', true);
             })
@@ -324,8 +305,7 @@
               if (d3.select('.company-overview .text').html() === ''){
                 d3.select('.company-overview h2').html('');
               }
-
-              app.addClassToSelected(d, 'g.investment', 'dimmed', false)
+              app.addClassToSelected(d, 'g.investment', 'dimmed', false);
             })
             .on('click', function(d){
               d3.selectAll('g.investment')
@@ -341,7 +321,7 @@
               // find dirtyCompany in dirt
               var company = app.dirtyCompanies.filter(function(nestedD){
                 return nestedD.name === d.name;
-              })
+              });
               d3.select('.company-overview .text').html(company[0].description);
             })
             .transition()
@@ -362,16 +342,12 @@
                   return investments[i - 1].boostX;
                 }
               })
-
               .attr('width', function(d) {
-                return barChartScale(d.value)
+                return barChartScale(d.value);
               });
 
-
-
     investor.exit().remove();
-
-  }
+  };
 
   app.addClassToSelected = function(datum, selector, className, value){
     d3.selectAll(selector)
@@ -379,14 +355,14 @@
         return nestedD.name === datum.name;
       })
       .classed(className, value);
-  }
+  };
 
   app.commaSeparateNumber = function(val){
     while (/(\d+)(\d{3})/.test(val.toString())){
       val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
     }
     return val;
-  }
+  };
 
   d3.csv('scripts/investments.csv', function(data){
     d3.json('scripts/descriptions.json', function(dirtyCompanies){
@@ -398,11 +374,11 @@
           .rangeRound([0, parseInt(app.width) - 0]);
 
         var countryList = app.cleanedData.countries.map(function(d){
-          return d.name
+          return d.name;
         });
 
         var companyList = dirtyCompanies.map(function(d){
-          return d.name
+          return d.name;
         });
 
         app.companyColors = d3.scale.ordinal()
@@ -427,7 +403,7 @@
             'hsl(180, 100%, 40%)',
             'hsl(185, 100%, 45%)',
             'hsl(185, 100%, 50%)',
-            'hsl(185, 100%, 55%)'])
+            'hsl(185, 100%, 55%)']);
 
         app.colorScale = d3.scale.ordinal()
           .domain(countryList)
@@ -439,7 +415,7 @@
             'hsl(330, 100%, 60%)',
             'hsl(330, 100%, 65%)']);
 
-        app.draw("België");
+        app.draw('België');
 
       });
     });
