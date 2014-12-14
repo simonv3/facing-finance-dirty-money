@@ -20,6 +20,12 @@
   //   .text('Landen')
   //   .attr('y', 12);
 
+  app.graphTitle = app.svg
+    .append('text')
+    .classed('title', true)
+    .attr('y', + 20)
+    .text('Europeese banken gebruiken €65 miljard in spaarcenten om te investeren in deze bedrijven.')
+
   app.countries = app.svg.append('g')
     .classed('countries', true);
 
@@ -166,7 +172,7 @@
             d.boostX = app.xScale(d.total) + previousTotal;
             x = app.cleanedData.countries[i - 1].boostX;
           }
-          return 'translate(' + x + ', 0)';
+          return 'translate(' + x + ', 40)';
         });
 
     country
@@ -238,9 +244,12 @@
             return "Britse"
             break;
         }}
-        return nationaliteit() + " banken steken zo'n " + Math.round(d.total) + " mln euro in 'dirty money' bedrijven"
+        return nationaliteit() +
+          " banken steken zo'n "+
+          app.commaSeparateNumber(Math.round(d.total)) +
+          " mln euro in 'dirty money' bedrijven:"
       })
-      .attr('y', 100)
+      .attr('y', 140)
       .style('font-size', '1.2rem');
 
     var investors,
@@ -269,7 +278,7 @@
       .append('g')
       .classed('investor', true)
         .attr('transform', function(d, i){
-          var push = 140 + i * 70;
+          var push = 180 + i * 70;
           return "translate(0, " + push + ")"
         })
         .attr('actual-value', function(d){ return d.total; })
@@ -303,9 +312,19 @@
             .attr('x', 0)
             .attr('width', 0)
             .on('mouseover', function(d){
-              app.addClassToSelected(d, 'g.investment', 'dimmed', true)
+
+              console.log(d3.select('.company-overview .text').html())
+              if (d3.select('.company-overview .text').html() == ''){
+                d3.select('.company-overview h2').html(d.name);
+
+              }
+              app.addClassToSelected(d, 'g.investment', 'dimmed', true);
             })
             .on('mouseout', function(d){
+              if (d3.select('.company-overview .text').html() === ''){
+                d3.select('.company-overview h2').html('');
+              }
+
               app.addClassToSelected(d, 'g.investment', 'dimmed', false)
             })
             .on('click', function(d){
@@ -360,6 +379,13 @@
         return nestedD.name === datum.name;
       })
       .classed(className, value);
+  }
+
+  app.commaSeparateNumber = function(val){
+    while (/(\d+)(\d{3})/.test(val.toString())){
+      val = val.toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+    }
+    return val;
   }
 
   d3.csv('scripts/investments.csv', function(data){
