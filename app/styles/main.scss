@@ -20,10 +20,33 @@ body{
   font-family: 'Lato', sans-serif;
 }
 
+.rapport{
+  max-width: 480px;
+  margin: 2rem auto;
+  h1{
+  }
+
+  p{
+    margin: .5rem 0;
+  }
+  .intro{
+    font-size: 1.2rem;
+
+  }
+}
+
 .graph{
-  height: 600px;
-  width: 800px;
+  height: 460px;
+  width: 940px;
   margin: 1rem auto;
+  position: relative;
+}
+
+.graph .company-overview{
+  position: absolute;
+  top: 120px;
+  width: 300px;
+  right: 0;
 }
 
 svg{
@@ -37,30 +60,60 @@ svg{
   .country{
     fill: hsl(0, 0, 90);
     cursor: pointer;
-    transition: fill .2s ease-in-out;
 
-    &:hover, &.hovering{
+
+    text{
+      transition: opacity .2s ease-in-out;
       fill: hsl(0, 0, 50);
+    }
+
+    rect{
+      transition: opacity .2s ease-in-out;
+    }
+
+    &:hover rect{
+
+      opacity: .7;
     }
 
     &.selected{
-      fill: hsl(0, 0, 50);
+      opacity: .5;
     }
   }
 
-  .company rect{
-    transition: opacity .5s ease-in-out;
+  .investment{
+    fill: hsl(0, 0, 50);
     cursor: pointer;
+    /*transition: opacity .5s;*/
+
+    &.dimmed{
+      opacity: .7;
+    }
+
+    &.clicked rect{
+
+      fill: #B20D77;
+      transition: fill .5s;
+    }
+
+    text{
+      text-anchor: left;
+    }
+  }
+}
+.creativecommons{
+  max-width: 480px;
+  margin: 1rem auto;
+  text-align: center;
+  img{
+    display: inline-block;
+    margin-bottom: .5rem;
   }
 
-  .breakdown rect, .investment-breakdown rect{
-    cursor: pointer;
+  p{
+    display: inline-block;
   }
-
-  .breakdown text, .investment-breakdown text{
-    transition: opacity .5s;
-    pointer-events: none;
-  }
+  /*margin-bottom: 1rem;*/
 }
 
 .browsehappy {
