@@ -416,6 +416,16 @@
       .enter()
         .append('g')
         .classed('investment', true)
+        .on('mouseover', function(d){
+          d3.select(this).select('text').text(function(){
+            return d.name + ' - €' + app.commaSeparateNumber(Math.round(d.value)) + ' mln';
+          });
+        })
+        .on('mouseout', function(d){
+          d3.select(this).select('text').text(function(){
+            return d.name;
+          });
+        })
         .on('click', app.clickOnCompany);
 
     enteringCompany
@@ -454,14 +464,14 @@
   };
 
   var a = function() {
-      var b = $(window).scrollTop();
-      var d = $('#notification-anchor').offset().top;
-      var c = $('#notification');
-      if (b > d) {
-          c.css({position:'fixed',top:'20px',right:$('.graph')[0].offsetLeft});
-      } else {
-          c.css({position:'absolute',top:'',right:''});
-      }
+    var b = $(window).scrollTop();
+    var d = $('#notification-anchor').offset().top;
+    var c = $('#notification');
+    if (b > d) {
+        c.css({position:'fixed',top:'40px',right:$('.graph')[0].offsetLeft});
+    } else {
+        c.css({position:'absolute',top:'',right:''});
+    }
   };
   $(window).scroll(a);a();
 
